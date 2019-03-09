@@ -1,8 +1,7 @@
-# Gitportal
-Short description and motivation.
+# Gitportal (In Development)
 
 ## Usage
-How to use my plugin.
+TODO
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -22,7 +21,7 @@ $ gem install gitportal
 ```
 
 ## Contributing
-Contribution directions go here.
+TODO
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
