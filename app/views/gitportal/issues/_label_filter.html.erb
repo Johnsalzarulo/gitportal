@@ -1,0 +1,20 @@
+<% if @label.present? %>
+  <br>
+  <p><strong>Showing <%= pluralize(@issues.count, 'item', 'items') %> matching:<p>
+  <h2><strong><%= URI.decode(@label) %></strong></h2>
+  <div class='group-group'>
+    <a href='<%= issues_path(:clear => true) %>' class='btn btn-success'>Show all issues</a>
+  </div>
+  <br>
+<% else %>
+  <h3><strong><i class="fa-fw fa fa-filter" aria-hidden="true"></i> Pipeline</strong></h3>
+  <p>This page lists all pending bugfixes and changes. This information is directly updated from the source code version control, It's always up to date. There may be some typos / inconsistencies.</p>
+  <p>There is roughly <%= @hours %> hours of work in the current pipeline accross <%= @issues.count %> changes.</p>
+  <p><strong>For all recent changes view the <a href='<%= changes_path %>'><u>Change Log</u></a></strong></p>
+  <p>
+    <small>Filter by Label</small>
+    <br>
+    <%= all_labels(@labels) %>
+  </p>
+  <br>
+<% end %>

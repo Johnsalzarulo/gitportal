@@ -1,0 +1,44 @@
+<div class="bgray fullheight" data-turbolinks="false">
+
+<div class="navbar navbar-default subnav" role="navigation">
+
+  <div class="container">
+    <div class="navbar-header">
+      <a href='<%= issues_path %>' class='navbar-brand'>
+        <p><i class="fa fa-arrow-left" aria-hidden="true"></i> Pipeline</p>
+      </a>
+      <p class='navbar-text'>Issue</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="container nogutter">
+  <div class="container paddingbottom">
+    <div class="col-md-8 col-md-offset-2 nogutter">
+
+      <div class="panel panel-default">
+        <div class='panel-heading'>
+          <span class='panel-title'>
+            Created <%= time_ago_in_words(@issue['created_at']) %> Ago
+            <a href='<%= @issue['html_url'] %>'
+               class='btn btn-danger btn-xs pull-right'
+               target='blank'>
+               <span class='white'>
+                 View Issue #<%= @issue['number']%> GitHub <i class="fa fa-external-link" aria-hidden="true"></i>
+               </span>
+             </a>
+          </span>
+        </div>
+        <div class='panel-body markdown'>
+          <h1><%= @issue['title'] %></h1>
+          <p><%= all_labels(@issue['labels']) %></p>
+        </div>
+        <div class='panel-body markdown'>
+          <%= markdown(@issue['body']) %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
