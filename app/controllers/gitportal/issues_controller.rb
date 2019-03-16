@@ -1,13 +1,9 @@
 class Gitportal::IssuesController < ApplicationController
 
   def index
-    def index
-      @labels = GithubService.new.labels
-      @issues = GithubService.new.issues
-      @issues = @issues.reverse!
-      filter_by_label
-    end
-
+    @labels = GithubService.new.labels
+    @issues = GithubService.new.issues.reverse!
+    filter_by_label
   end
 
   private

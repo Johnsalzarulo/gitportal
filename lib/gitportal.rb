@@ -1,5 +1,7 @@
 require "gitportal/engine"
 
 module Gitportal
-  # Your code goes here...
+  class Engine < ::Rails::Engine
+    isolate_namespace Gitportal
+  end
 end
