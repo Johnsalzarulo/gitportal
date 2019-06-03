@@ -1,0 +1,33 @@
+<div class="bgray fullheight" data-turbolinks="false">
+<div class="navbar navbar-default subnav" role="navigation">
+
+  <div class="container">
+    <div class="navbar-header">
+      <a href='<%= gitportal.milestones_path %>' class='navbar-brand'>
+        <p><i class="fa fa-arrow-left" aria-hidden="true"></i> Milestones</p>
+      </a>
+      <p class='navbar-text'>Milestone</p>
+    </div>
+  </div>
+</div>
+<div class="container nogutter">
+  <div class="container paddingbottom">
+    <div class="col-md-8 col-md-offset-2 nogutter">
+      <h3><strong><i class="fa-fw fa fa-wrench" aria-hidden="true"></i> <%= @milestone['title'] %></strong></h3>
+      <p class="paddingbottom"><%= @milestone['description'] %></p>
+      <% @issues.each do |issue| %>
+        <a href='/gitportal/issues/<%= issue['number']%>?milestone_number=<%= @milestone['number'] %>' class='list-group-item'>
+            <div class='markdown'>
+              <p>
+                <strong><%= issue['title'] %></strong>
+                <label class='label label-default pull-right'>Issue #<%= issue['number'] %></label>
+              <p>
+              <%=  labels(issue['labels']) %>
+              <br>
+              <small>Created <%= time_ago_in_words(issue['created_at']) %> ago</small>
+            </div>
+        </a>
+    <% end %>
+    </div>
+  </div>
+</div>
