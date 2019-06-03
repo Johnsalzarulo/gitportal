@@ -2,31 +2,42 @@
 <div class="container nogutter">
   <div class="container paddingbottom">
     <div class="col-md-8 col-md-offset-2 nogutter">
-      <%= render 'gitportal/issues/label_filter' %>
-
-      <% if @issues.count > 0 %>
-
-        <% @issues.each do |issue| %>
-          <% unless issue["pull_request"].present? or issue["labels"].to_s.include? 'hidden' then %>
-            <a href="<%= issue_path(issue['number']) %>" class='list-group-item'>
-                <div class='markdown'>
-                  <p>
-                    <strong><%= issue['title'] %></strong>
-                    <label class='label label-default pull-right'>Issue #<%= issue['number'] %></label>
-                  <p>
-                  <%=  labels(issue['labels']) %>
-                  <br>
-                  <small>Created <%= time_ago_in_words(issue['created_at']) %> ago</small>
-                </div>
-            </a>
-          <% end %>
-
-        <% end %>
-
+      <%= render '/gitportal/issues/label_filter' %>
+      <% if params[:sort] == 'alph' %>
+        <div class='row'>
+          <div class='col-md-6'>
+            <small>Currently sorted by Priority (Alphabetically)</small><br>
+          </div>
+          <div class='col-md-6 text-right'>
+            <a href='<%= issues_path %>' class='btn btn-default btn-xs'><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Sort by Created Date</a>
+          </div>
+        </div>
       <% else %>
-        <h3>No Issues</h3>
+        <div class='row'>
+          <div class='col-md-6'>
+            <small>Currently sorted by Created Date (Newest on Bottom)</small><br>
+          </div>
+          <div class='col-md-6 text-right'>
+            <a href='<%= issues_path %>?sort=alph' class='btn btn-default btn-xs'><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Sort by Priority (Alphabetically)</a>
+          </div>
+        </div>
       <% end %>
 
+      <% @issues.each do |issue| %>
+        <% unless issue["pull_request"].present? or issue["labels"].to_s.include? 'hidden' then %>
+          <a href='/gitportal/issues/<%= issue['number']%>' class='list-group-item'>
+              <div class='markdown'>
+                <p>
+                  <strong><%= issue['title'] %></strong>
+                  <label class='label label-default pull-right'>Issue #<%= issue['number'] %></label>
+                <p>
+                <%=  labels(issue['labels']) %>
+                <br>
+                <small>Created <%= time_ago_in_words(issue['created_at']) %> ago</small>
+              </div>
+          </a>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
