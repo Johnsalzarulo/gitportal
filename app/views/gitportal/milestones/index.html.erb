@@ -15,8 +15,12 @@
                     <h4><%= milestone['title'] %></h4>
                     <p class="visible-xs"><%= milestone['open_issues'] %> open issues</p>
                     <p><small>
-                      <i class="fa-fw fa fa-calendar" aria-hidden="true"></i> Due by <%= Time.parse(milestone['due_on']).strftime("%b %d, %Y") %>
-                      <i class="fa-fw fa fa-clock-o" aria-hidden="true"></i> Last updated <%= time_ago_in_words(milestone['updated_at']) %> ago
+                      <% if milestone['due_on'] %>
+                        <i class="fa-fw fa fa-calendar" aria-hidden="true"></i> Due by <%= Time.parse(milestone['due_on']).strftime("%b %d, %Y") %>
+                      <% end %>
+                      <% if milestone['updated_at'] %>
+                        <i class="fa-fw fa fa-clock-o" aria-hidden="true"></i> Last updated <%= time_ago_in_words(milestone['updated_at']) %> ago
+                      <% end %>
                     </small></p>
                   </div>
                 </div>
