@@ -29,7 +29,9 @@ module Gitportal::ApplicationHelper
     return "" if labels == nil
       html_labels = ""
       labels.each do |label|
-        html_labels += "<span class='label label-default' style='background-color: ##{label['color']}; margin-right: 4px;'>#{label['name']}</span>"
+        color = label.respond_to?(:color) ? label.color : label['color']
+        name = label.respond_to?(:name) ? label.name : label['name']
+        html_labels += "<span class='label label-default' style='background-color: ##{color}; margin-right: 4px;'>#{name}</span>"
       end
       html_labels.html_safe
   end

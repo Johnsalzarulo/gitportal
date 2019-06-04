@@ -16,15 +16,13 @@
       <h3><strong><i class="fa-fw fa fa-wrench" aria-hidden="true"></i> <%= @milestone['title'] %></strong></h3>
       <p class="paddingbottom"><%= @milestone['description'] %></p>
       <% @issues.each do |issue| %>
-        <a href='/gitportal/issues/<%= issue['number']%>?milestone_number=<%= @milestone['number'] %>' class='list-group-item'>
+        <a href='/gitportal/issues/<%= issue.number %>?milestone_number=<%= @milestone['number'] %>' class='list-group-item'>
             <div class='markdown'>
               <p>
-                <strong><%= issue['title'] %></strong>
-                <label class='label label-default pull-right'>Issue #<%= issue['number'] %></label>
+                <strong><%= issue.title %></strong>
+                <label class='label label-default pull-right'>Issue #<%= issue.number %></label>
               <p>
-              <%=  labels(issue['labels']) %>
-              <br>
-              <small>Created <%= time_ago_in_words(issue['created_at']) %> ago</small>
+              <%= labels(issue.labels.edges.map {|e| e.node}) %>
             </div>
         </a>
     <% end %>
