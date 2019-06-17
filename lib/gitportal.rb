@@ -1,3 +1,4 @@
+require "redcarpet"
 require "gitportal/engine"
 require "gitportal/configuration"
 require "gitportal/version"
