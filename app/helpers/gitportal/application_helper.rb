@@ -25,22 +25,26 @@ module Gitportal::ApplicationHelper
     markdown.render(text).html_safe
   end
 
-  def labels(labels)
+  def labels(labels, css_classes="")
     return "" if labels == nil
       html_labels = ""
       labels.each do |label|
         color = label.respond_to?(:color) ? label.color : label['color']
         name = label.respond_to?(:name) ? label.name : label['name']
-        html_labels += "<span class='label label-default' style='background-color: ##{color}; margin-right: 4px;'>#{name}</span>"
+        html_labels += "<span class='#{css_classes}' style='background-color: ##{color}; margin-right: 4px;'>#{name}</span>"
       end
       html_labels.html_safe
   end
 
-  def all_labels(labels)
+  def all_labels(labels, link=true, css_classes="")
     return "" if labels == nil
       buttons = ""
       labels.each do |label|
-        buttons += "<a href='/gitportal/issues?label=#{label['name']}' class='label label-default' style='background-color: ##{label['color']}; display: inline-block; margin-right: 4px;'> #{label['name']}</a>"
+        if link
+          buttons += "<a href='/gitportal/issues?label=#{label['name']}' class='label label-default' style='background-color: ##{label['color']}; display: inline-block; margin-right: 4px;'> #{label['name']}</a>"
+        else
+          buttons += "<span class='#{css_classes}' style='background-color: ##{label['color']}; display: inline-block; margin-right: 4px;'> #{label['name']}</span>"
+        end
       end
       buttons.html_safe
   end
