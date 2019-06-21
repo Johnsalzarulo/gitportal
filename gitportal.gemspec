@@ -29,7 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "httparty"
   spec.add_dependency "graphql-client"
   spec.add_dependency "redcarpet"
-  spec.add_development_dependency "pg"
-
 
 end
