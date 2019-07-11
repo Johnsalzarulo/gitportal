@@ -44,7 +44,7 @@ module GithubGraphqlService
   query($owner:String!,$name:String!,$milestoneNumber:Int!) {
     repository(owner:$owner,name:$name) {
       milestone(number:$milestoneNumber) {
-        issues(states: [OPEN]) {
+        issues(states: [OPEN], first: 200) {
           edges {
             node {
               number
