@@ -1,0 +1,26 @@
+<div class="bgray fullheight" data-turbolinks="false">
+  <div class="container nogutter">
+    <div class="container paddingbottom">
+      <div class="col-md-8 col-md-offset-2 nogutter">
+      <h3><strong><i class="fa-fw fa fa-refresh" aria-hidden="true"></i> Changelog</strong></h3>
+      <p>This page lists all changes that have recently been deployed. This information is directly updated from the source code version control. It's always up to date. There may be some typos / inconsistencies.</p>
+      <p><strong>For all upcoming changes view the <a href='<%= issues_path %>'><u>Pipeline</u></a></strong></p>
+
+      <ul class='list-group'>
+        <% @changes.first(50).each do |change| %>
+          <a href='<%= gitportal.pull_request_path(change['number']) %>' class='list-group-item'>
+            <div class='markdown'>
+              <p>
+                <strong><%= change['title'] %></strong>
+                <label class='label label-default pull-right'>Change #<%= change['number'] %></label>
+              <p>
+              <% if change['merged_at'] %>
+                <small>Merged <%= time_ago_in_words(change['merged_at']) %> ago</small>
+              <% end %>
+            </div>
+          </a>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

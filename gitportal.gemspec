@@ -25,9 +25,8 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 5.0"
-  spec.add_development_dependency "pg"
-  spec.add_development_dependency "httparty"
-  spec.add_development_dependency "redcarpet"
+  spec.add_dependency "httparty"
+  spec.add_dependency "graphql-client"
+  spec.add_dependency "redcarpet"
 
 end

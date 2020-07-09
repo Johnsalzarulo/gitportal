@@ -1,0 +1,27 @@
+<% if change["merged_at"].present? %>
+  <div class='halfpaddingbottom'>
+    <div class='panel panel-default'>
+      <div class='panel-body'>
+        <div class='markdown'>
+          <p>
+            <span classs='header'>
+              <strong><%= change["title"] %></strong>
+            </span>
+            <br>
+            <small>
+              <%= time_ago_in_words(change["merged_at"]) %> Ago.
+              Merged from PR
+              <a href='<%= change["_links"]["html"]["href"] %>'
+                 target='blank'>
+                 <%= change["number"] %>
+               </a>
+             </small>
+           </h3>
+          <% if change["body"].present? %>
+            <%= markdown(change["body"]) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
